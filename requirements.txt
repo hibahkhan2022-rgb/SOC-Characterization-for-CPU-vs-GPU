@@ -1,0 +1,46 @@
+# =============================================================================
+# Dependencies — Jetson Orin Nano, JetPack 6.2.1 (Ubuntu 22.04 / Python 3.10)
+# =============================================================================
+# IMPORTANT: on a Jetson the deps live in TWO worlds. Only the pip-installable
+# ones are listed below. The big ML runtimes are provided by JetPack or NVIDIA's
+# own wheel index and must NOT be installed from standard PyPI (you'll get the
+# wrong/CPU build or a version mismatch with CUDA 12.6).
+#
+#   pip install -r requirements.txt
+#
+# -----------------------------------------------------------------------------
+# pip-installable (analysis + glue)
+# -----------------------------------------------------------------------------
+numpy>=1.24,<2.0        # <2.0: many Jetson NVIDIA wheels are built against numpy 1.x
+pandas>=2.0,<3.0        # analyze.py: group-by / joins
+matplotlib>=3.7,<4.0    # analyze.py: figures (uses Agg backend, headless OK)
+pillow>=10.0            # image loading/preprocessing (prepare_models, fetch_data)
+pycuda>=2024.1          # characterize.py / calibrator: device memory + streams
+onnxruntime>=1.17       # CPU baseline backend (CPUExecutionProvider). aarch64 wheel
+                        #   exists on PyPI; do NOT install onnxruntime-gpu just for the
+                        #   CPU EP — keep the CPU baseline a clean, documented runtime.
+
+# fetch_data.py uses only the Python standard library (urllib, tarfile, shutil) —
+# nothing to install for the data step.
+
+# =============================================================================
+# PROVIDED BY JETPACK — DO NOT pip install these (documented here for the record)
+# =============================================================================
+# These ship with JetPack 6.2.1 and are import-available system-wide. Listed so
+# your environment is reproducible / auditable, NOT to be installed via pip.
+#
+#   tensorrt   == 10.3      (JetPack 6.2 stack; verify: python3 -c "import tensorrt as trt; print(trt.__version__)")
+#   cuda       == 12.6      (verify: nvcc --version  or  cat /usr/local/cuda/version.json)
+#   cudnn      == 9.3
+#
+# =============================================================================
+# INSTALL FROM NVIDIA'S JETSON WHEEL INDEX — NOT standard PyPI
+# =============================================================================
+# PyTorch + torchvision for Jetson are special CUDA-enabled aarch64 builds. Get
+# them from NVIDIA's Jetson PyTorch index matching JetPack 6.2 / CUDA 12.6, per:
+#   https://developer.nvidia.com/embedded/install-jetson-software
+# Needed ONLY for prepare_models.py `export` (torchvision model -> ONNX). If you
+# export the ONNX files on another machine, you don't need torch on the Jetson at all.
+#
+#   torch         (Jetson build for JetPack 6.2 / CUDA 12.6)
+#   torchvision   (matching the torch build)

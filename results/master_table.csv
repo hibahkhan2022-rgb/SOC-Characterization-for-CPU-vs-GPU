@@ -1,0 +1,13 @@
+model,power_mode,config,precision,throughput_ips,latency_ms_p99,dyn_power_W,energy_mJ_per_inf,perf_per_watt,tj_peak_C,top1_%
+complex,15W,CPU,FP32,7.8+/-nan,229.40,2.83,358.84,2.74+/-nan,67.5,79.00
+complex,15W,GPU-FP16,FP16,185.3+/-nan,7.79,2.20,8.92,84.12+/-nan,68.6,79.00
+complex,15W,GPU-FP32,FP32,107.6+/-nan,11.36,2.29,18.06,47.04+/-nan,72.3,79.00
+complex,7W,CPU,FP32,6.3+/-nan,221.21,2.08,328.05,3.01+/-nan,62.6,79.00
+complex,7W,GPU-FP16,FP16,92.8+/-nan,14.71,1.06,9.84,87.27+/-nan,61.3,79.00
+complex,7W,GPU-FP32,FP32,48.5+/-nan,25.75,1.22,23.25,39.67+/-nan,60.6,79.00
+light,15W,CPU,FP32,48.5+/-nan,27.80,2.83,52.84,17.10+/-nan,65.7,76.00
+light,15W,GPU-FP16,FP16,257.0+/-nan,5.06,1.21,3.08,211.67+/-nan,61.9,76.00
+light,15W,GPU-FP32,FP32,193.1+/-nan,7.10,1.39,5.30,139.01+/-nan,64.6,76.00
+light,7W,CPU,FP32,34.4+/-nan,46.24,1.82,48.37,18.91+/-nan,63.5,76.00
+light,7W,GPU-FP16,FP16,171.0+/-nan,9.48,0.85,3.76,200.73+/-nan,59.9,76.00
+light,7W,GPU-FP32,FP32,106.2+/-nan,12.10,0.81,6.45,131.47+/-nan,60.5,76.00

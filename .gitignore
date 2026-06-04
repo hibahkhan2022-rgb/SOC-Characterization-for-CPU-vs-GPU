@@ -1,0 +1,10 @@
+# large/regenerable artifacts — keep them out of git
+engines/
+models/
+data/
+imagenette2-320/
+__pycache__/
+*.engine
+*.onnx
+*.onnx.data
+*.cache

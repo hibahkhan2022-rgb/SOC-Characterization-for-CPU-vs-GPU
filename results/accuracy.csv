@@ -1,0 +1,7 @@
+model,precision,n,top1,top5
+complex,FP32,200,0.79,0.965
+complex,FP16,200,0.79,0.965
+complex,CPU_FP32,200,0.79,0.965
+light,FP32,200,0.76,0.96
+light,FP16,200,0.76,0.96
+light,CPU_FP32,200,0.76,0.96
