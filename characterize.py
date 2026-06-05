@@ -11,10 +11,6 @@ import subprocess
 from dataclasses import dataclass, field, asdict
 from typing import Callable, Optional
  
-# =============================================================================
-# CONFIG  — VERIFY EVERY VALUE IN THIS BLOCK ON YOUR OWN BOARD BEFORE TRUSTING DATA
-# =============================================================================
- 
 # --- nvpmodel power-mode IDs.  Run `sudo nvpmodel -q` and read the IDs off YOUR
 #     board.  On the original Orin Nano these are commonly MAXN=0 and 7W=1, but
 #     the "Super" board and different JetPack versions renumber them. DO NOT trust
@@ -218,11 +214,6 @@ class PowerLogger(threading.Thread):
  
     def window(self, t0: float, t1: float):
         return [s for s in self.samples if t0 <= s["t"] <= t1]
- 
- 
-# =============================================================================
-# Inference backends  — PLUG YOUR MODELS IN HERE
-# =============================================================================
  
 class InferenceBackend:
     name: str
@@ -475,11 +466,7 @@ def _save_timeseries(logger, model, power_mode, config, repeat):
                 w.writerow([s["t"], rail, mw, "", ""])
             for zone, c in s["temp_c"].items():
                 w.writerow([s["t"], "", "", zone, c])
- 
- 
-# =============================================================================
-# Backend registry  — EDIT THESE PATHS to your engines/model
-# =============================================================================
+
  
 def build_backends():
     """Return {(model, config): backend}. Build TRT engines offline first.
